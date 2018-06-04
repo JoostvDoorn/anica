@@ -351,7 +351,6 @@ def main(args, silent_mode=False):
             var_list=sep_vars)
     train_step_disc = optimizer(args.learning_rate).minimize(disc_cost,
             var_list=disc_vars)
-    max_corr = get_max_corr(x, prediction)
 
     summary_vars = OrderedDict({'total_corr': total_corr,
                                  'total_cost': tot_cost,
@@ -359,6 +358,7 @@ def main(args, silent_mode=False):
                                  'disc_cost': disc_cost,
                                  'rec_cost': rec_cost})
     if not args.blind:
+        max_corr = get_max_corr(x, prediction)
         summary_vars['max_corr'] = max_corr
 
     if args.gan_type == 'wgan-gp':
